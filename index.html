@@ -11,7 +11,6 @@
   :root{
     --ml-yellow: #FFE600;
     --ml-yellow-soft: #FFF176;
-    --ml-yellow-card: #FFDF00; /* Amarillo sólido para las tarjetas */
     --ml-blue: #2968F5;
     --ml-blue-bright: #3B8CFF;
     --ml-cyan: #29E7F5;
@@ -21,8 +20,8 @@
     --glass-border: rgba(255,255,255,0.10);
     --text-hi: #F5F7FF;
     --text-mid: #9CA6C7;
-    --text-dark: #121829; /* Color de texto legible sobre fondo amarillo */
-    --text-dark-muted: #4A5568;
+    --text-dark: #121829;
+    --text-dark-muted: #3D485C;
     --danger: #D90429;
     --radius: 18px;
   }
@@ -289,19 +288,17 @@
     box-shadow: 0 0 18px rgba(255,230,0,0.35);
   }
 
-  /* ---------- Grid de cupones (MODIFICADO: AMARILLO SÓLIDO) ---------- */
+  /* ---------- Grid de cupones ---------- */
   .grid{
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     gap:20px;
   }
 
-  /* Tarjeta con fondo amarillo sólido y contraste ajustado */
+  /* Estructura base de la tarjeta */
   .coupon{
     position:relative;
     border-radius: var(--radius);
-    background: var(--ml-yellow-card); /* Color sólido */
-    border: 2px solid #E5C700;
     padding:20px;
     cursor:pointer;
     overflow:hidden;
@@ -313,6 +310,46 @@
     box-shadow: 0 16px 36px rgba(0,0,0,0.45), 0 0 0 2px #FFFFFF;
   }
 
+  /* ========================================================
+     COLORES SÓLIDOS POR CATEGORÍA
+     ======================================================== */
+  /* 1. Mercado Libre / General (Amarillo oficial fuerte) */
+  .coupon.cat-mercadolibre {
+    background: #FFDF00;
+    border: 2px solid #E5C700;
+  }
+  .coupon.cat-mercadolibre .cat-tag { background: #121829; color: #FFFFFF; }
+
+  /* 2. Bancos (Amarillo pastel suave / bajo) */
+  .coupon.cat-bancos {
+    background: #FFF59D;
+    border: 2px solid #FBC02D;
+  }
+  .coupon.cat-bancos .cat-tag { background: #B78103; color: #FFFFFF; }
+
+  /* 3. Tecnología (Cian eléctrico sólido) */
+  .coupon.cat-tecnologia {
+    background: #00C4D6;
+    border: 2px solid #009BAA;
+  }
+  .coupon.cat-tecnologia .cat-tag { background: #07474E; color: #FFFFFF; }
+
+  /* 4. Moda (Coral / Salmón rosado sólido) */
+  .coupon.cat-moda {
+    background: #FF6B8B;
+    border: 2px solid #E04869;
+  }
+  .coupon.cat-moda .cat-tag { background: #670F23; color: #FFFFFF; }
+
+  /* 5. Hogar (Verde menta esmeralda sólido) */
+  .coupon.cat-hogar {
+    background: #2EC4B6;
+    border: 2px solid #1E9E92;
+  }
+  .coupon.cat-hogar .cat-tag { background: #0E4741; color: #FFFFFF; }
+
+
+  /* Elementos internos de las tarjetas */
   .coupon-top{
     display:flex; justify-content:space-between; align-items:flex-start;
     position:relative; z-index:1;
@@ -322,8 +359,6 @@
     font-weight:800;
     letter-spacing:0.06em;
     text-transform:uppercase;
-    color: #FFFFFF;
-    background: #1852D6; /* Azul con alto contraste sobre amarillo */
     padding:4px 10px;
     border-radius:999px;
   }
@@ -331,7 +366,7 @@
     font-family:'Space Grotesk',sans-serif;
     font-weight:800;
     font-size:2rem;
-    color: #121829; /* Oscuro para destacar */
+    color: #121829;
     line-height:1;
   }
 
@@ -339,7 +374,7 @@
     margin-top:14px;
     font-weight:700;
     font-size:1.05rem;
-    color: var(--text-dark); /* Texto negro legible */
+    color: var(--text-dark);
     position:relative; z-index:1;
   }
   .coupon-sub{
@@ -353,7 +388,7 @@
   .code-row{
     margin-top:16px;
     display:flex; align-items:center; justify-content:space-between;
-    background: #FFFFFF; /* Caja blanca para destacar el código */
+    background: #FFFFFF;
     border: 2px dashed #121829;
     border-radius:10px;
     padding:10px 12px;
@@ -364,7 +399,7 @@
     font-weight:800;
     letter-spacing:0.06em;
     font-size:0.95rem;
-    color: #1852D6;
+    color: #121829;
   }
   .code-row .code .masked{
     color: #8A94A6;
@@ -373,7 +408,7 @@
   }
   .code-row .copy-hint{
     font-size:0.7rem;
-    font-weight:700;
+    font-weight:800;
     color: #2D3748;
     display:flex; align-items:center; gap:5px;
   }
@@ -386,7 +421,7 @@
   .timer{
     font-family:'JetBrains Mono',monospace;
     font-size:0.78rem;
-    font-weight:700;
+    font-weight:800;
     color: var(--danger);
     display:flex; align-items:center; gap:6px;
   }
@@ -402,16 +437,16 @@
     font-size:0.8rem;
     font-weight:800;
     color: #FFFFFF;
-    background: #1852D6;
+    background: #121829;
     padding:8px 16px;
     border-radius:999px;
     border:none;
     cursor:pointer;
-    box-shadow: 0 4px 12px rgba(24,82,214,0.35);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     transition: background .2s ease;
   }
   .go-btn:hover{
-    background: #0E3BA3;
+    background: #2D3748;
   }
 
   .empty-state{
@@ -496,11 +531,12 @@
   <!-- Controles: Barra de búsqueda y categorías -->
   <section class="controls">
     <div class="search-row">
-      <input type="text" id="searchInput" placeholder="Buscar por tienda, banco o categoría (ej. VISA, Moda, Tech)...">
+      <input type="text" id="searchInput" placeholder="Buscar por tienda, banco o categoría (ej. BBVA, Celulares, Ropa)...">
       <div class="count" id="visibleCount">0 disponibles</div>
     </div>
     <div class="cats" id="categoryContainer">
       <button class="cat-btn active" data-cat="todas">Todas</button>
+      <button class="cat-btn" data-cat="mercadolibre">Mercado Libre</button>
       <button class="cat-btn" data-cat="bancos">Bancos</button>
       <button class="cat-btn" data-cat="tecnologia">Tecnología</button>
       <button class="cat-btn" data-cat="moda">Moda</button>
@@ -521,22 +557,33 @@
 
 <script>
 // ---------- BASE DE DATOS DE CUPONES ----------
-// Modifica la propiedad "estado": pon 'activo' o 'inactivo'
-// Si está 'inactivo', NO se mostrará en la página.
+// Categorías disponibles: "mercadolibre", "bancos", "tecnologia", "moda", "hogar"
+// Modifica "estado": pon 'activo' o 'inactivo'
 const cupones = [
   {
     id: 1,
-    categoria: "bancos",
-    categoriaLabel: "Bancos",
-    descuento: "$50000 OFF",
-    titulo: "BBVA en compras mínimas de $3,500",
-    subtitulo: "Aplica en toda la tienda pagando con TDC",
-    codigo: "BBVA500ML",
-    link: "https://meli.la/23GsD5x",
+    categoria: "mercadolibre",
+    categoriaLabel: "Mercado Libre",
+    descuento: "$200 OFF",
+    titulo: "Cupón General de Bienvenida",
+    subtitulo: "En compras superiores a $1,000 en toda la app",
+    codigo: "BIENVENIDA200",
+    link: "https://www.mercadolibre.com.mx",
     estado: "activo"
   },
   {
     id: 2,
+    categoria: "bancos",
+    categoriaLabel: "Bancos",
+    descuento: "$500 OFF",
+    titulo: "BBVA en compras mínimas de $3,500",
+    subtitulo: "Aplica pagando con Tarjeta de Crédito",
+    codigo: "BBVA500ML",
+    link: "https://www.mercadolibre.com.mx",
+    estado: "activo"
+  },
+  {
+    id: 3,
     categoria: "tecnologia",
     categoriaLabel: "Tecnología",
     descuento: "15% OFF",
@@ -547,17 +594,6 @@ const cupones = [
     estado: "activo"
   },
   {
-    id: 3,
-    categoria: "bancos",
-    categoriaLabel: "Bancos",
-    descuento: "$300 OFF",
-    titulo: "Mercado Pago con saldo en cuenta",
-    subtitulo: "En compras a partir de $1,500",
-    codigo: "MPAGO300",
-    link: "https://meli.la/23GsD5x",
-    estado: "inactivo" // ESTE CUPÓN NO APARECERÁ
-  },
-  {
     id: 4,
     categoria: "moda",
     categoriaLabel: "Moda",
@@ -565,7 +601,7 @@ const cupones = [
     titulo: "Ropa, Calzado y Accesorios Deportivos",
     subtitulo: "Sin mínimo de compra en tiendas oficiales",
     codigo: "MODA20YA",
-    link: "https://meli.la/2avsYNb",
+    link: "https://www.mercadolibre.com.mx",
     estado: "activo"
   },
   {
@@ -576,12 +612,23 @@ const cupones = [
     titulo: "Herramientas y Mejoras del Hogar",
     subtitulo: "En artículos con Envío Full",
     codigo: "HOGAR10FULL",
-    link: "https://www.eltiocupones.com",
+    link: "https://www.mercadolibre.com.mx",
     estado: "activo"
+  },
+  {
+    id: 6,
+    categoria: "bancos",
+    categoriaLabel: "Bancos",
+    descuento: "$300 OFF",
+    titulo: "Mercado Pago con saldo en cuenta",
+    subtitulo: "En compras a partir de $1,500",
+    codigo: "MPAGO300",
+    link: "https://www.mercadolibre.com.mx",
+    estado: "inactivo" // ESTE CUPÓN NO SE MOSTRARÁ
   }
 ];
 
-// FILTRO PRINCIPAL: Solo cupones estrictamente activos
+// FILTRO: Solo cupones estrictamente activos
 let cuponesActivos = cupones.filter(c => c.estado && c.estado.toLowerCase() === 'activo');
 
 const grid = document.getElementById('couponGrid');
@@ -617,7 +664,10 @@ function renderCupones() {
 
   filtrados.forEach(c => {
     const card = document.createElement('article');
-    card.className = 'coupon';
+    
+    // Asigna la clase base 'coupon' y la clase de su color por categoría
+    card.className = `coupon cat-${c.categoria}`;
+
     card.innerHTML = `
       <div class="coupon-top">
         <span class="cat-tag">${c.categoriaLabel}</span>
@@ -635,7 +685,7 @@ function renderCupones() {
       </div>
     `;
 
-    // Evento de clic: Copia código y redirige con afiliado
+    // Evento de clic: Copia código y abre Mercado Libre
     card.addEventListener('click', () => {
       navigator.clipboard.writeText(c.codigo).then(() => {
         mostrarToast();
