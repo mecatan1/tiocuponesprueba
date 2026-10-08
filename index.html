@@ -686,4 +686,53 @@ function renderCupones() {
       </div>
       <div class="coupon-title">${c.titulo}</div>
       <div class="coupon-sub">${c.subtitulo}</div>
-      <div class
+      <div class="code-row">
+        <div class="code">${c.codigo}</div>
+        <div class="copy-hint">COPIAR 📋</div>
+      </div>
+      <div class="coupon-bottom">
+        <div class="timer"><span class="dot"></span>Vence pronto</div>
+        <button class="go-btn">USAR CUPÓN</button>
+      </div>
+    `;
+
+    // Evento de clic: Copia código y abre Mercado Libre
+    card.addEventListener('click', () => {
+      navigator.clipboard.writeText(c.codigo).then(() => {
+        mostrarToast();
+        setTimeout(() => {
+          window.open(c.link, '_blank');
+        }, 600);
+      });
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+function mostrarToast() {
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Búsqueda
+searchInput.addEventListener('input', (e) => {
+  terminoBusqueda = e.target.value.trim();
+  renderCupones();
+});
+
+// Filtrado de categoría
+catBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    catBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    categoriaSeleccionada = btn.getAttribute('data-cat');
+    renderCupones();
+  });
+});
+
+// Inicializar
+renderCupones();
+</script>
+</body>
+</html>
