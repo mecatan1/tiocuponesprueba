@@ -185,44 +185,19 @@
     justify-content:center;
     align-items:center;
   }
-  .figure-glow{
-    position:absolute;
-    width:340px;height:340px;
-    background: radial-gradient(circle, rgba(255,230,0,0.35), rgba(41,104,245,0.15) 55%, transparent 75%);
-    filter: blur(10px);
-    animation: pulse 4s ease-in-out infinite;
-    border-radius:50%;
-  }
-  @keyframes pulse{
-    0%,100%{ transform:scale(1); opacity:0.85; }
-    50%{ transform:scale(1.08); opacity:1; }
-  }
-  .hero-figure .mascot-placeholder{
-    position:relative;
-    width:min(280px, 78%);
-    height:280px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background: radial-gradient(circle, #FFE600 0%, #2968F5 100%);
-    border-radius: 50%;
-    font-size: 5rem;
+  .hero-image {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    border-radius: var(--radius);
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    animation: float 5s ease-in-out infinite;
+    border: 3px solid rgba(255,255,255,0.1);
+    animation: float 6s ease-in-out infinite;
   }
   @keyframes float{
     0%,100%{ transform: translateY(0px); }
-    50%{ transform: translateY(-14px); }
+    50%{ transform: translateY(-12px); }
   }
-  .ring{
-    position:absolute;
-    border-radius:50%;
-    border:1px dashed rgba(59,140,255,0.35);
-    animation: spin 22s linear infinite;
-  }
-  .ring.r1{ width:380px;height:380px; }
-  .ring.r2{ width:440px;height:440px; border-color: rgba(255,230,0,0.20); animation-duration:32s; animation-direction:reverse; }
-  @keyframes spin{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
 
   /* ---------- Controles: buscar + categorías ---------- */
   .controls{
@@ -313,39 +288,19 @@
   /* ========================================================
      COLORES SÓLIDOS POR CATEGORÍA
      ======================================================== */
-  /* 1. Mercado Libre / General */
-  .coupon.cat-mercadolibre {
-    background: #FFDF00;
-    border: 2px solid #E5C700;
-  }
+  .coupon.cat-mercadolibre { background: #FFDF00; border: 2px solid #E5C700; }
   .coupon.cat-mercadolibre .cat-tag { background: #121829; color: #FFFFFF; }
 
-  /* 2. Bancos */
-  .coupon.cat-bancos {
-    background: #FFF59D;
-    border: 2px solid #FBC02D;
-  }
+  .coupon.cat-bancos { background: #FFF59D; border: 2px solid #FBC02D; }
   .coupon.cat-bancos .cat-tag { background: #B78103; color: #FFFFFF; }
 
-  /* 3. Tecnología */
-  .coupon.cat-tecnologia {
-    background: #00C4D6;
-    border: 2px solid #009BAA;
-  }
+  .coupon.cat-tecnologia { background: #00C4D6; border: 2px solid #009BAA; }
   .coupon.cat-tecnologia .cat-tag { background: #07474E; color: #FFFFFF; }
 
-  /* 4. Moda */
-  .coupon.cat-moda {
-    background: #FF6B8B;
-    border: 2px solid #E04869;
-  }
+  .coupon.cat-moda { background: #FF6B8B; border: 2px solid #E04869; }
   .coupon.cat-moda .cat-tag { background: #670F23; color: #FFFFFF; }
 
-  /* 5. Hogar */
-  .coupon.cat-hogar {
-    background: #2EC4B6;
-    border: 2px solid #1E9E92;
-  }
+  .coupon.cat-hogar { background: #2EC4B6; border: 2px solid #1E9E92; }
   .coupon.cat-hogar .cat-tag { background: #0E4741; color: #FFFFFF; }
 
 
@@ -400,11 +355,6 @@
     letter-spacing:0.06em;
     font-size:0.95rem;
     color: #121829;
-  }
-  .code-row .code .masked{
-    color: #8A94A6;
-    filter: blur(2.5px);
-    user-select:none;
   }
   .code-row .copy-hint{
     font-size:0.7rem;
@@ -550,10 +500,7 @@
       </div>
     </div>
     <div class="hero-figure">
-      <div class="ring r2"></div>
-      <div class="ring r1"></div>
-      <div class="figure-glow"></div>
-      <div class="mascot-placeholder">🏷️</div>
+      <img src="image_15f995.jpg" alt="Mascota de Cupones" class="hero-image">
     </div>
   </section>
 
@@ -669,7 +616,7 @@ const cupones = [
     subtitulo: "En compras a partir de $1,500",
     codigo: "MPAGO300",
     link: "https://meli.la/1pqJk2M",
-    estado: "inactivo" // ESTE CUPÓN NO SE MOSTRARÁ
+    estado: "inactivo"
   }
 ];
 
@@ -709,11 +656,8 @@ function renderCupones() {
 
   filtrados.forEach(c => {
     const card = document.createElement('article');
-    
-    // Asigna la clase base 'coupon' y la clase de su color por categoría
     card.className = `coupon cat-${c.categoria}`;
 
-    // NUEVO: Extraer los primeros 3 caracteres y añadir asteriscos
     const codigoOculto = c.codigo.substring(0, 3) + '********';
 
     card.innerHTML = `
@@ -724,7 +668,6 @@ function renderCupones() {
       <div class="coupon-title">${c.titulo}</div>
       <div class="coupon-sub">${c.subtitulo}</div>
       <div class="code-row">
-        <!-- Mostrar el código oculto en lugar del código completo -->
         <div class="code">${codigoOculto}</div>
         <div class="copy-hint">VER Y COPIAR 📋</div>
       </div>
@@ -734,7 +677,6 @@ function renderCupones() {
       </div>
     `;
 
-    // Evento de clic: Copia el código real (c.codigo) y abre Mercado Libre
     card.addEventListener('click', () => {
       navigator.clipboard.writeText(c.codigo).then(() => {
         mostrarToast();
