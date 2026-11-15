@@ -3,190 +3,320 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel Administrativo · El Tío Cupones</title>
+<title>Panel Administrativo v6 · El Tío Cupones</title>
 <link rel="icon" type="image/webp" href="mascota.webp">
 <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 <style>
-:root{--sage:#b7d3c4;--sage-deep:#86ab98;--sage-dark:#5b8571;--navy:#1e3a5f;--navy-deep:#142944;--red:#d1483c;--ink:#16324a;--cream:#fefaf0;--wa:#1f7a52}
+:root{--s:#b7d3c4;--sd:#86ab98;--sk:#5b8571;--n:#1e3a5f;--nd:#142944;--r:#d1483c;--c:#fefaf0;--w:#1f7a52}
 *{box-sizing:border-box}[hidden]{display:none!important}
-body{margin:0;background:var(--sage);color:var(--ink);font-family:Arial,sans-serif;padding:16px 10px 60px}
-.admin-box{background:var(--cream);border:3px solid var(--navy);border-radius:18px;max-width:900px;margin:0 auto;padding:18px;box-shadow:0 10px 28px rgba(0,0,0,.18)}
-.admin-header,.admin-bar,.admin-item{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.admin-header{border-bottom:2px dashed var(--sage-deep);padding-bottom:12px;margin-bottom:16px}
-.admin-title{font-family:'Luckiest Guy',sans-serif;font-weight:400;font-size:25px;color:var(--navy);margin:0}
-.view-site-btn{background:var(--navy);color:#fff;text-decoration:none;border-radius:999px;padding:8px 15px;font-weight:800;font-size:12px}
-.admin-bar{margin-bottom:14px}.admin-tabs,.admin-bar-r,.admin-item-btns,.admin-actions{display:flex;gap:8px;flex-wrap:wrap}
-.admin-tab{background:#fff;border:2px solid var(--navy);color:var(--navy);padding:8px 15px;border-radius:999px;font-weight:800;font-size:12.5px;cursor:pointer}
-.admin-tab.active{background:var(--navy);color:#fff}
-.admin-form{background:#fff;border:2px solid var(--sage-dark);border-radius:14px;padding:14px;margin-bottom:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px}
-.admin-field{display:flex;flex-direction:column;gap:4px}.admin-field.full,.admin-actions{grid-column:1/-1}
-.admin-field label{font-size:11px;font-weight:800;color:var(--navy-deep);text-transform:uppercase}
-.admin-field input,.admin-field textarea{width:100%;padding:9px 10px;border:1.5px solid var(--sage-deep);border-radius:8px;font-size:15px;font-family:inherit;font-weight:600}
-.link-status{font-size:11.5px;font-weight:800}.link-status.ok{color:#2e7d32}.link-status.warn{color:#c62828}
-.btn-primary{background:var(--wa);color:#fff;border:0;padding:11px 18px;border-radius:10px;font-weight:900;font-size:14px;cursor:pointer}
-.btn-secondary{background:var(--navy);color:#fff;border:0;padding:9px 13px;border-radius:10px;font-weight:800;font-size:12px;cursor:pointer}
-.admin-list{display:flex;flex-direction:column;gap:9px}
-.admin-item{background:#fff;border:2px solid var(--sage-deep);border-radius:12px;padding:11px 13px}.admin-item.off{opacity:.55}
-.admin-item-info{flex:1;min-width:190px}.admin-item-title{font-weight:900;font-size:14px;color:var(--navy-deep)}.admin-item-sub{font-size:12px;color:#5a5142;margin-top:2px}
-.btn-sm{border:1.5px solid var(--navy);background:#fff;color:var(--navy);padding:6px 10px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer}
-.btn-sm.danger{border-color:var(--red);color:var(--red)}.btn-sm.on{background:#e8f5e9;border-color:#2e7d32;color:#1b5e20}
-.admin-msg{position:sticky;top:8px;z-index:10;padding:11px 14px;border-radius:10px;font-size:13px;font-weight:800;margin-bottom:12px;border:2px solid transparent}
-.admin-msg.ok{background:#e8f5e9;color:#1b5e20;border-color:#2e7d32}.admin-msg.err{background:#ffebee;color:#b71c1c;border-color:#c62828}.admin-msg.info{background:#e3f2fd;color:#0d47a1;border-color:#1e88e5}
+body{margin:0;background:var(--s);color:#16324a;font-family:Arial,sans-serif;padding:14px 10px 50px}
+.box{background:var(--c);border:3px solid var(--n);border-radius:18px;max-width:880px;margin:0 auto;padding:16px}
+.row,.item{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.hdr{border-bottom:2px dashed var(--sd);padding-bottom:10px;margin-bottom:14px}
+h1{font-family:'Luckiest Guy',sans-serif;font-weight:400;font-size:24px;color:var(--n);margin:0}
+.tab{background:#fff;border:2px solid var(--n);color:var(--n);padding:7px 14px;border-radius:99px;font-weight:800;cursor:pointer}
+.tab.active,.btn2{background:var(--n);color:#fff}
+form{background:#fff;border:2px solid var(--sk);border-radius:14px;padding:12px;margin:12px 0 18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+label{display:flex;flex-direction:column;gap:3px;font-size:11px;font-weight:800;color:var(--nd);text-transform:uppercase}
+.full{grid-column:1/-1}
+input,textarea{width:100%;padding:8px 10px;border:1.5px solid var(--sd);border-radius:8px;font-size:14px;font-weight:600}
+.btn1{background:var(--w);color:#fff;border:0;padding:10px 18px;border-radius:10px;font-weight:900;cursor:pointer}
+.btn2{border:0;padding:8px 12px;border-radius:9px;font-weight:800;font-size:12px;cursor:pointer;text-decoration:none}
+.item{background:#fff;border:2px solid var(--sd);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.item.off{opacity:.55}
+.sm{border:1.5px solid var(--n);background:#fff;color:var(--n);padding:5px 9px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer}
+.sm.on{background:#e8f5e9;border-color:#2e7d32;color:#1b5e20}.sm.del{border-color:var(--r);color:var(--r)}
+.msg{padding:10px 12px;border-radius:10px;font-size:13px;font-weight:800;margin-bottom:10px;border:2px solid #2e7d32;background:#e8f5e9;color:#1b5e20}
+.msg.err{background:#ffebee;color:#b71c1c;border-color:#c62828}
 </style>
 </head>
 <body>
-<div class="admin-box">
-  <div class="admin-header">
-    <h1 class="admin-title">⚙️ Panel El Tío Cupones</h1>
-    <a href="index.html" target="_blank" class="view-site-btn">🌐 Ver página pública ↗</a>
+<div class="box">
+  <div class="row hdr">
+    <h1>⚙️ Panel El Tío Cupones (v6)</h1>
+    <a href="index.html" target="_blank" class="btn2">🌐 Ver página pública ↗</a>
   </div>
-  <div id="adminLoginView" style="text-align:center;padding:28px 10px">
-    <p style="font-weight:700;color:var(--navy-deep);margin-bottom:16px">Acceso de administrador (<b>dain.glez@hotmail.com</b>)</p>
-    <button type="button" class="btn-primary" id="googleLoginBtn">🔑 Iniciar sesión con Google</button>
-    <p id="loginMsg" style="color:#1e3a5f;font-weight:800;font-size:13.5px;margin-top:16px">⏳ Cargando...</p>
+
+  <div id="adminLoginView" style="text-align:center;padding:24px 10px">
+    <p style="font-weight:700;margin-bottom:14px">Administrador: <b>dain.glez@hotmail.com</b></p>
+    <button type="button" class="btn1" id="googleLoginBtn">🔑 Iniciar sesión con Google</button>
+    <p id="loginMsg" style="font-weight:800;font-size:13px;margin-top:14px">⏳ Cargando v6...</p>
   </div>
+
   <div id="adminPanelView" hidden>
-    <div class="admin-bar">
-      <div class="admin-tabs">
-        <button type="button" class="admin-tab active" id="tabCuponesBtn">🎟️ Cupones</button>
-        <button type="button" class="admin-tab" id="tabOfertasBtn">🛍️ Ofertas</button>
+    <div class="row" style="margin-bottom:10px">
+      <div class="row">
+        <button type="button" class="tab active" id="tabCuponesBtn">🎟️ Cupones</button>
+        <button type="button" class="tab" id="tabOfertasBtn">🛍️ Ofertas</button>
       </div>
-      <div class="admin-bar-r">
-        <button type="button" class="btn-secondary" id="migrateBtn">📦 Migrar anteriores</button>
-        <button type="button" class="btn-secondary" id="importSheetBtn">📥 Importar de Sheet</button>
-        <button type="button" class="btn-secondary" id="dedupeBtn">🧹 Quitar repetidos</button>
-        <button type="button" class="btn-sm danger" id="logoutBtn">Salir</button>
+      <div class="row">
+        <button type="button" class="btn2" id="migrateBtn">📦 Migrar anteriores</button>
+        <button type="button" class="btn2" id="importSheetBtn">📥 Importar de Sheet</button>
+        <button type="button" class="btn2" id="dedupeBtn">🧹 Quitar repetidos</button>
+        <button type="button" class="sm del" id="logoutBtn">Salir</button>
       </div>
     </div>
-    <div class="admin-msg ok" id="adminMsg">🟢 Panel listo y conectado al 100%</div>
+
+    <div class="msg" id="adminMsg">⏳ Verificando bloques...</div>
+
     <div id="adminCuponesSec">
-      <form class="admin-form" id="cuponForm" novalidate>
+      <form id="cuponForm" novalidate>
         <input type="hidden" id="c_id">
-        <div class="admin-field"><label>Tienda / Categoría</label><input type="text" id="c_tienda" value="Mercado Libre" required></div>
-        <div class="admin-field"><label>Descuento (título)</label><input type="text" id="c_descuento" placeholder="$500 OFF o 10% OFF" required></div>
-        <div class="admin-field"><label>Descripción / compra mínima</label><input type="text" id="c_descripcion" placeholder="Compra mínima $3,000"></div>
-        <div class="admin-field"><label>Código del cupón</label><input type="text" id="c_codigo" placeholder="Vacío si no lleva código"></div>
-        <div class="admin-field full"><label>Tu link de afiliado de Mercado Libre</label><input type="url" id="c_link" placeholder="https://meli.la/... o link con matt_tool" required><div class="link-status" id="c_link_status">Pega tu link para verificarlo...</div></div>
-        <div class="admin-field"><label>Color (verde, amarillo, rojo, azul o #HEX)</label><input type="text" id="c_color" placeholder="Vacío = crema"></div>
-        <div class="admin-field"><label>Vencimiento (opcional)</label><input type="text" id="c_vence" placeholder="AAAA-MM-DD HH:MM"></div>
-        <div class="admin-field"><label>Orden (1 sale primero)</label><input type="number" id="c_orden" value="10"></div>
-        <div class="admin-actions"><button type="submit" class="btn-primary" id="c_save_btn">💾 Guardar cupón</button><button type="button" class="btn-sm" id="c_cancel_btn" hidden>Cancelar edición</button></div>
+        <label>Tienda / Categoría<input id="c_tienda" value="Mercado Libre"></label>
+        <label>Descuento (título)<input id="c_descuento" placeholder="$500 OFF o 10% OFF"></label>
+        <label>Descripción / compra mínima<input id="c_descripcion" placeholder="Compra mínima $3,000"></label>
+        <label>Código del cupón<input id="c_codigo" placeholder="Vacío si no lleva"></label>
+        <label class="full">Link de afiliado Mercado Libre<input id="c_link" placeholder="https://..."><span id="c_link_status" style="font-size:11px"></span></label>
+        <label>Color (verde, amarillo, rojo, azul)<input id="c_color" placeholder="Vacío = crema"></label>
+        <label>Vencimiento (AAAA-MM-DD HH:MM)<input id="c_vence"></label>
+        <label>Orden (1 sale primero)<input type="number" id="c_orden" value="10"></label>
+        <div class="full row" style="justify-content:flex-start">
+          <button type="submit" class="btn1" id="c_save_btn">💾 Guardar cupón</button>
+          <button type="button" class="sm" id="c_cancel_btn" hidden>Cancelar</button>
+        </div>
       </form>
-      <div class="admin-list" id="adminCuponesList"></div>
+      <div id="adminCuponesList"></div>
     </div>
+
     <div id="adminOfertasSec" hidden>
-      <form class="admin-form" id="ofertaForm" novalidate>
+      <form id="ofertaForm" novalidate>
         <input type="hidden" id="o_id">
-        <div class="admin-field"><label>Título del producto</label><input type="text" id="o_titulo" required></div>
-        <div class="admin-field"><label>Precio oferta ($)</label><input type="number" step="0.01" id="o_precio" required></div>
-        <div class="admin-field"><label>Precio antes ($)</label><input type="number" step="0.01" id="o_antes"></div>
-        <div class="admin-field"><label>Vendedor</label><input type="text" id="o_vendedor"></div>
-        <div class="admin-field full"><label>URL de imagen</label><input type="text" id="o_imagen" placeholder="https://http2.mlstatic.com/..." required></div>
-        <div class="admin-field full"><label>Tu link de afiliado del producto</label><input type="url" id="o_link" placeholder="https://meli.la/... o link con matt_tool" required></div>
-        <div class="admin-field"><label>Descripción corta</label><input type="text" id="o_descripcion"></div>
-        <div class="admin-field"><label>Instrucciones (opcional)</label><textarea id="o_instrucciones" rows="2"></textarea></div>
-        <div class="admin-actions"><button type="submit" class="btn-primary" id="o_save_btn">💾 Guardar producto</button><button type="button" class="btn-sm" id="o_cancel_btn" hidden>Cancelar edición</button></div>
+        <label>Título del producto<input id="o_titulo"></label>
+        <label>Precio oferta ($)<input type="number" step="0.01" id="o_precio"></label>
+        <label>Precio antes ($)<input type="number" step="0.01" id="o_antes"></label>
+        <label>Vendedor<input id="o_vendedor"></label>
+        <label class="full">URL de imagen<input id="o_imagen"></label>
+        <label class="full">Link de afiliado del producto<input id="o_link"></label>
+        <label>Descripción corta<input id="o_descripcion"></label>
+        <label>Instrucciones<textarea id="o_instrucciones" rows="2"></textarea></label>
+        <div class="full row" style="justify-content:flex-start">
+          <button type="submit" class="btn1" id="o_save_btn">💾 Guardar producto</button>
+          <button type="button" class="sm" id="o_cancel_btn" hidden>Cancelar</button>
+        </div>
       </form>
-      <div class="admin-list" id="adminOfertasList"></div>
+      <div id="adminOfertasList"></div>
     </div>
   </div>
 </div>
+
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
 <script>
 var $ = function(id){ return document.getElementById(id); };
-window.onerror = function(m,u,l){ if($('adminMsg')){$('adminMsg').className='admin-msg err';$('adminMsg').textContent='Error línea '+l+': '+m;$('adminMsg').hidden=false;} };
-firebase.initializeApp({apiKey:"AIzaSyCikdrkep__NflYuxg-eA3RkxEubohV5FU",authDomain:"el-tio-cupones.firebaseapp.com",projectId:"el-tio-cupones",storageBucket:"el-tio-cupones.firebasestorage.app",messagingSenderId:"941147559112",appId:"1:941147559112:web:53771ba7eb0e0b5e4001fd"});
-var auth = firebase.auth(), db = firebase.firestore(), SITE_REF = db.collection("site").doc("data"), ADMIN_EMAIL = "dain.glez@hotmail.com";
-var SHEET = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ78FaPhtRhWjNC8uHzkLziSqURlcezoNRJIRfV9yQRLAyCe6U14OGo5qDQl0pm6fCAPyAFX0a3ywY1/pub?single=true&output=csv&gid=";
-var rawC = [], rawO = [];
-function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
-function esc(s){ return String(s||"").replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">").replace(/"/g,"""); }
-function ensureUrl(u){ var c=String(u||"").trim(); return (!c||c==="#")?"":(c.indexOf("http")===0?c:"https://"+c); }
-function adminMsg(t,k){ var e=$('adminMsg'); e.textContent=t||""; e.className="admin-msg "+(k||"info"); e.hidden=!t; }
-function saveAll(msg){ adminMsg("⏳ Guardando cambios...","info"); return SITE_REF.set({cupones:rawC,ofertas:rawO}).then(function(){ adminMsg(msg||"✅ Guardado al instante","ok"); }).catch(function(e){ adminMsg("❌ Error Firestore: "+e.message,"err"); }); }
+firebase.initializeApp({
+  apiKey: "AIzaSyCikdrkep__NflYuxg-eA3RkxEubohV5FU",
+  authDomain: "el-tio-cupones.firebaseapp.com",
+  projectId: "el-tio-cupones",
+  storageBucket: "el-tio-cupones.firebasestorage.app",
+  messagingSenderId: "941147559112",
+  appId: "1:941147559112:web:53771ba7eb0e0b5e4001fd"
+});
+var auth = firebase.auth(), db = firebase.firestore();
+var SITE_REF = db.collection("site").doc("data");
+var ADMIN_EMAIL = "dain.glez@hotmail.com";
 
-$('loginMsg').style.color="#2e7d32"; $('loginMsg').textContent="✅ Conectado. Toca el botón verde para entrar.";
-$('googleLoginBtn').onclick = function(){ auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){ $('loginMsg').style.color="#c62828"; $('loginMsg').textContent=e.message; }); };
-$('logoutBtn').onclick = function(){ auth.signOut(); };
-auth.onAuthStateChanged(function(u){ var ok=u&&u.email&&u.email.toLowerCase()===ADMIN_EMAIL; $('adminLoginView').hidden=!!ok; $('adminPanelView').hidden=!ok; if(u&&!ok){ auth.signOut(); } });
+$('loginMsg').style.color = "#2e7d32";
+$('loginMsg').textContent = "✅ Conectado (v6). Toca el botón verde para entrar.";
 
-SITE_REF.onSnapshot(function(s){ var d=(s.exists&&s.data())?s.data():{}; rawC=(d.cupones||[]).slice().sort(function(a,b){return (Number(a.orden)||99)-(Number(b.orden)||99);}); rawO=d.ofertas||[]; renderC(); renderO(); }, function(e){ adminMsg("⚠️ Error leyendo base: "+e.message,"err"); });
-$('tabCuponesBtn').onclick = function(){ $('tabCuponesBtn').classList.add('active'); $('tabOfertasBtn').classList.remove('active'); $('adminCuponesSec').hidden=false; $('adminOfertasSec').hidden=true; };
-$('tabOfertasBtn').onclick = function(){ $('tabOfertasBtn').classList.add('active'); $('tabCuponesBtn').classList.remove('active'); $('adminOfertasSec').hidden=false; $('adminCuponesSec').hidden=true; };
-$('c_link').oninput = function(){ var v=ensureUrl($('c_link').value).toLowerCase(), ok=v.indexOf("meli.la/")!==-1||v.indexOf("/sec/")!==-1||v.indexOf("/social/")!==-1||v.indexOf("matt_tool=")!==-1; $('c_link_status').textContent=!v?"Pega tu link...":(ok?"✅ Link válido":"⚠️ Revisa que lleve matt_tool o meli.la"); $('c_link_status').className="link-status "+(ok?"ok":"warn"); };
-
-function resetC(){ $('cuponForm').reset(); $('c_id').value=""; $('c_tienda').value="Mercado Libre"; $('c_orden').value="10"; $('c_save_btn').textContent="💾 Guardar cupón"; $('c_cancel_btn').hidden=true; }
-$('c_cancel_btn').onclick = resetC;
-$('cuponForm').onsubmit = function(e){
-  e.preventDefault(); var id=$('c_id').value, p={_id:id||uid(),tienda:$('c_tienda').value.trim()||"Mercado Libre",descuento:$('c_descuento').value.trim(),descripcion:$('c_descripcion').value.trim(),codigo:$('c_codigo').value.trim().toUpperCase(),link:ensureUrl($('c_link').value),color:$('c_color').value.trim(),vence:$('c_vence').value.trim(),orden:Number($('c_orden').value)||10,verificado:Date.now(),activo:"si"};
-  if(!p.descuento||!p.link) return adminMsg("⚠️ Falta Descuento o Link","err");
-  var i=rawC.findIndex(function(x){return x._id===id;}); if(i>=0){ p.activo=rawC[i].activo||"si"; rawC[i]=p; } else rawC.push(p);
-  saveAll("✅ Cupón guardado al instante").then(resetC);
+$('googleLoginBtn').onclick = function(){
+  $('loginMsg').textContent = "⏳ Abriendo ventana de Google...";
+  auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(function(e){
+    $('loginMsg').style.color = "#c62828";
+    $('loginMsg').textContent = "Error: " + e.message;
+  });
 };
-function renderC(){
-  $('adminCuponesList').innerHTML = !rawC.length ? '<div style="text-align:center;padding:16px;font-weight:700">Sin cupones. Toca Importar de Sheet o Migrar anteriores arriba.</div>' : rawC.map(function(c){
-    var off=(c.activo||"si").toLowerCase()==="no";
-    return '<div class="admin-item '+(off?'off':'')+'"><div class="admin-item-info"><div class="admin-item-title">#'+esc(c.orden||10)+' ['+esc(c.tienda)+'] '+esc(c.descuento)+' — <code>'+esc(c.codigo||'S/C')+'</code></div><div class="admin-item-sub">'+esc(c.descripcion)+(c.color?' · 🎨 '+esc(c.color):'')+'</div></div><div class="admin-item-btns"><button type="button" class="btn-sm '+(off?'':'on')+'" data-act="toggle" data-id="'+esc(c._id)+'">'+(off?'🔴 Apagado':'🟢 Activo')+'</button><button type="button" class="btn-sm" data-act="edit" data-id="'+esc(c._id)+'">✏️ Editar</button><button type="button" class="btn-sm danger" data-act="del" data-id="'+esc(c._id)+'">🗑️ Borrar</button></div></div>';
+$('logoutBtn').onclick = function(){ auth.signOut(); };
+auth.onAuthStateChanged(function(u){
+  var ok = u && u.email && u.email.toLowerCase() === ADMIN_EMAIL;
+  $('adminLoginView').hidden = !!ok;
+  $('adminPanelView').hidden = !ok;
+  if(u && !ok){ alert("Usa la cuenta " + ADMIN_EMAIL); auth.signOut(); }
+});
+</script>
+
+<script>
+var rawC = [], rawO = [];
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+function esc(s){ return String(s || "").replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">"); }
+function urlOk(u){
+  var c = String(u || "").trim();
+  if(!c || c === "#") return "";
+  return c.indexOf("http") === 0 ? c : "https://" + c;
+}
+function msg(t, err){
+  var e = $('adminMsg');
+  e.textContent = t;
+  e.className = err ? "msg err" : "msg";
+}
+function save(txt){
+  msg("⏳ Guardando en Firebase...", false);
+  return SITE_REF.set({ cupones: rawC, ofertas: rawO }).then(function(){
+    msg("✅ " + txt, false);
+  }).catch(function(e){
+    msg("❌ Error al guardar: " + e.message, true);
+    alert("Error de Firebase: " + e.message);
+  });
+}
+
+SITE_REF.onSnapshot(function(s){
+  var d = (s.exists && s.data()) ? s.data() : {};
+  rawC = (d.cupones || []).slice().sort(function(a,b){ return (Number(a.orden)||99) - (Number(b.orden)||99); });
+  rawO = d.ofertas || [];
+  drawC(); drawO();
+}, function(e){ msg("❌ Error leyendo Firebase: " + e.message, true); });
+
+$('tabCuponesBtn').onclick = function(){
+  $('tabCuponesBtn').classList.add('active'); $('tabOfertasBtn').classList.remove('active');
+  $('adminCuponesSec').hidden = false; $('adminOfertasSec').hidden = true;
+};
+$('tabOfertasBtn').onclick = function(){
+  $('tabOfertasBtn').classList.add('active'); $('tabCuponesBtn').classList.remove('active');
+  $('adminOfertasSec').hidden = false; $('adminCuponesSec').hidden = true;
+};
+
+$('cuponForm').onsubmit = function(e){
+  e.preventDefault();
+  var id = $('c_id').value;
+  var p = {
+    _id: id || uid(),
+    tienda: $('c_tienda').value.trim() || "Mercado Libre",
+    descuento: $('c_descuento').value.trim(),
+    descripcion: $('c_descripcion').value.trim(),
+    codigo: $('c_codigo').value.trim().toUpperCase(),
+    link: urlOk($('c_link').value),
+    color: $('c_color').value.trim(),
+    vence: $('c_vence').value.trim(),
+    orden: Number($('c_orden').value) || 10,
+    verificado: Date.now(),
+    activo: "si"
+  };
+  if(!p.descuento || !p.link) return msg("⚠️ Escribe el Descuento y el Link", true);
+  var i = rawC.findIndex(function(x){ return x._id === id; });
+  if(i >= 0){ p.activo = rawC[i].activo || "si"; rawC[i] = p; } else rawC.push(p);
+  save("Cupón guardado al instante").then(function(){
+    $('cuponForm').reset(); $('c_id').value = ""; $('c_tienda').value = "Mercado Libre";
+    $('c_orden').value = "10"; $('c_save_btn').textContent = "💾 Guardar cupón"; $('c_cancel_btn').hidden = true;
+  });
+};
+$('c_cancel_btn').onclick = function(){
+  $('cuponForm').reset(); $('c_id').value = ""; $('c_save_btn').textContent = "💾 Guardar cupón"; $('c_cancel_btn').hidden = true;
+};
+
+function drawC(){
+  if(!rawC.length){ $('adminCuponesList').innerHTML = "<p style='text-align:center;font-weight:700'>Sin cupones aún. Toca Importar de Sheet o Migrar anteriores.</p>"; return; }
+  $('adminCuponesList').innerHTML = rawC.map(function(c){
+    var off = (c.activo || "si") === "no";
+    return '<div class="item '+(off?'off':'')+'"><div><b>#'+esc(c.orden)+' ['+esc(c.tienda)+'] '+esc(c.descuento)+'</b> — <code>'+esc(c.codigo||'S/C')+'</code><br><small>'+esc(c.descripcion)+'</small></div><div class="row"><button type="button" class="sm '+(off?'':'on')+'" data-a="tg" data-i="'+esc(c._id)+'">'+(off?'🔴 Apagado':'🟢 Activo')+'</button><button type="button" class="sm" data-a="ed" data-i="'+esc(c._id)+'">✏️ Editar</button><button type="button" class="sm del" data-a="dl" data-i="'+esc(c._id)+'">🗑️</button></div></div>';
   }).join("");
 }
 $('adminCuponesList').onclick = function(e){
-  var b=e.target.closest("button[data-act]"); if(!b) return; var id=b.getAttribute("data-id"), act=b.getAttribute("data-act"), x=rawC.find(function(i){return i._id===id;}); if(!x) return;
-  if(act==="toggle"){ x.activo=(x.activo||"si").toLowerCase()==="no"?"si":"no"; saveAll("✅ Estado actualizado"); }
-  else if(act==="edit"){ $('c_id').value=id; $('c_tienda').value=x.tienda||"Mercado Libre"; $('c_descuento').value=x.descuento||""; $('c_descripcion').value=x.descripcion||""; $('c_codigo').value=x.codigo||""; $('c_link').value=x.link||""; $('c_color').value=x.color||""; $('c_vence').value=x.vence||""; $('c_orden').value=x.orden||10; $('c_save_btn').textContent="💾 Guardar cambios"; $('c_cancel_btn').hidden=false; $('cuponForm').scrollIntoView({behavior:"smooth"}); }
-  else if(act==="del"&&confirm("¿Borrar cupón?")){ rawC=rawC.filter(function(i){return i._id!==id;}); saveAll("🗑️ Cupón eliminado"); }
+  var b = e.target.closest("button[data-a]"); if(!b) return;
+  var id = b.getAttribute("data-i"), a = b.getAttribute("data-a");
+  var x = rawC.find(function(i){ return i._id === id; }); if(!x) return;
+  if(a === "tg"){ x.activo = (x.activo || "si") === "no" ? "si" : "no"; save("Estado actualizado"); }
+  else if(a === "ed"){
+    $('c_id').value = id; $('c_tienda').value = x.tienda || ""; $('c_descuento').value = x.descuento || "";
+    $('c_descripcion').value = x.descripcion || ""; $('c_codigo').value = x.codigo || ""; $('c_link').value = x.link || "";
+    $('c_color').value = x.color || ""; $('c_vence').value = x.vence || ""; $('c_orden').value = x.orden || 10;
+    $('c_save_btn').textContent = "💾 Guardar cambios"; $('c_cancel_btn').hidden = false; window.scrollTo(0, 0);
+  } else if(a === "dl" && confirm("¿Borrar cupón?")){
+    rawC = rawC.filter(function(i){ return i._id !== id; }); save("Cupón borrado");
+  }
 };
-function resetO(){ $('ofertaForm').reset(); $('o_id').value=""; $('o_save_btn').textContent="💾 Guardar producto"; $('o_cancel_btn').hidden=true; }
-$('o_cancel_btn').onclick = resetO;
+</script>
+
+<script>
+var SHEET = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ78FaPhtRhWjNC8uHzkLziSqURlcezoNRJIRfV9yQRLAyCe6U14OGo5qDQl0pm6fCAPyAFX0a3ywY1/pub?single=true&output=csv&gid=";
+
 $('ofertaForm').onsubmit = function(e){
-  e.preventDefault(); var id=$('o_id').value, p={_id:id||uid(),titulo:$('o_titulo').value.trim(),precio:$('o_precio').value.trim(),precio_antes:$('o_antes').value.trim(),vendedor:$('o_vendedor').value.trim(),imagen:$('o_imagen').value.trim(),link:ensureUrl($('o_link').value),descripcion:$('o_descripcion').value.trim(),instrucciones:$('o_instrucciones').value.trim(),activo:"si"};
-  if(!p.titulo||!p.precio||!p.link) return adminMsg("⚠️ Faltan datos del producto","err");
-  var i=rawO.findIndex(function(x){return x._id===id;}); if(i>=0){ p.activo=rawO[i].activo||"si"; rawO[i]=p; } else rawO.push(p);
-  saveAll("✅ Producto guardado").then(resetO);
+  e.preventDefault();
+  var id = $('o_id').value;
+  var p = {
+    _id: id || uid(), titulo: $('o_titulo').value.trim(), precio: $('o_precio').value.trim(),
+    precio_antes: $('o_antes').value.trim(), vendedor: $('o_vendedor').value.trim(),
+    imagen: $('o_imagen').value.trim(), link: urlOk($('o_link').value),
+    descripcion: $('o_descripcion').value.trim(), instrucciones: $('o_instrucciones').value.trim(), activo: "si"
+  };
+  if(!p.titulo || !p.precio || !p.link) return msg("⚠️ Faltan datos del producto", true);
+  var i = rawO.findIndex(function(x){ return x._id === id; });
+  if(i >= 0){ p.activo = rawO[i].activo || "si"; rawO[i] = p; } else rawO.push(p);
+  save("Producto guardado").then(function(){
+    $('ofertaForm').reset(); $('o_id').value = ""; $('o_save_btn').textContent = "💾 Guardar producto"; $('o_cancel_btn').hidden = true;
+  });
 };
-function renderO(){
-  $('adminOfertasList').innerHTML = !rawO.length ? '<div style="text-align:center;padding:16px;font-weight:700">Sin productos guardados.</div>' : rawO.map(function(o){
-    var off=(o.activo||"si").toLowerCase()==="no";
-    return '<div class="admin-item '+(off?'off':'')+'"><div class="admin-item-info"><div class="admin-item-title">'+esc(o.titulo)+' — $'+esc(o.precio)+'</div></div><div class="admin-item-btns"><button type="button" class="btn-sm '+(off?'':'on')+'" data-act="toggle" data-id="'+esc(o._id)+'">'+(off?'🔴 Apagado':'🟢 Activo')+'</button><button type="button" class="btn-sm" data-act="edit" data-id="'+esc(o._id)+'">✏️ Editar</button><button type="button" class="btn-sm danger" data-act="del" data-id="'+esc(o._id)+'">🗑️ Borrar</button></div></div>';
+
+function drawO(){
+  if(!rawO.length){ $('adminOfertasList').innerHTML = "<p style='text-align:center;font-weight:700'>Sin ofertas aún.</p>"; return; }
+  $('adminOfertasList').innerHTML = rawO.map(function(o){
+    var off = (o.activo || "si") === "no";
+    return '<div class="item '+(off?'off':'')+'"><div><b>'+esc(o.titulo)+' — $'+esc(o.precio)+'</b></div><div class="row"><button type="button" class="sm '+(off?'':'on')+'" data-a="tg" data-i="'+esc(o._id)+'">'+(off?'🔴 Apagado':'🟢 Activo')+'</button><button type="button" class="sm" data-a="ed" data-i="'+esc(o._id)+'">✏️ Editar</button><button type="button" class="sm del" data-a="dl" data-i="'+esc(o._id)+'">🗑️</button></div></div>';
   }).join("");
 }
 $('adminOfertasList').onclick = function(e){
-  var b=e.target.closest("button[data-act]"); if(!b) return; var id=b.getAttribute("data-id"), act=b.getAttribute("data-act"), x=rawO.find(function(i){return i._id===id;}); if(!x) return;
-  if(act==="toggle"){ x.activo=(x.activo||"si").toLowerCase()==="no"?"si":"no"; saveAll("✅ Estado actualizado"); }
-  else if(act==="edit"){ $('o_id').value=id; $('o_titulo').value=x.titulo||""; $('o_precio').value=x.precio||""; $('o_antes').value=x.precio_antes||""; $('o_vendedor').value=x.vendedor||""; $('o_imagen').value=x.imagen||""; $('o_link').value=x.link||""; $('o_descripcion').value=x.descripcion||""; $('o_instrucciones').value=x.instrucciones||""; $('o_save_btn').textContent="💾 Guardar cambios"; $('o_cancel_btn').hidden=false; $('ofertaForm').scrollIntoView({behavior:"smooth"}); }
-  else if(act==="del"&&confirm("¿Borrar producto?")){ rawO=rawO.filter(function(i){return i._id!==id;}); saveAll("🗑️ Producto eliminado"); }
+  var b = e.target.closest("button[data-a]"); if(!b) return;
+  var id = b.getAttribute("data-i"), a = b.getAttribute("data-a");
+  var x = rawO.find(function(i){ return i._id === id; }); if(!x) return;
+  if(a === "tg"){ x.activo = (x.activo || "si") === "no" ? "si" : "no"; save("Oferta actualizada"); }
+  else if(a === "ed"){
+    $('o_id').value = id; $('o_titulo').value = x.titulo || ""; $('o_precio').value = x.precio || "";
+    $('o_antes').value = x.precio_antes || ""; $('o_vendedor').value = x.vendedor || "";
+    $('o_imagen').value = x.imagen || ""; $('o_link').value = x.link || "";
+    $('o_descripcion').value = x.descripcion || ""; $('o_instrucciones').value = x.instrucciones || "";
+    $('o_save_btn').textContent = "💾 Guardar cambios"; $('o_cancel_btn').hidden = false;
+  } else if(a === "dl" && confirm("¿Borrar producto?")){
+    rawO = rawO.filter(function(i){ return i._id !== id; }); save("Producto borrado");
+  }
 };
-function cKey(c){ return ensureUrl(c.link).toLowerCase()+"|"+String(c.codigo||"").toLowerCase().trim()+"|"+String(c.descuento||"").toLowerCase().trim(); }
-function oKey(o){ return ensureUrl(o.link).toLowerCase()+"|"+String(o.titulo||"").toLowerCase().trim(); }
-function normRow(r){ var o={}; Object.keys(r).forEach(function(k){ o[k.trim().toLowerCase().replace(/á/g,"a").replace(/é/g,"e").replace(/í/g,"i").replace(/ó/g,"o").replace(/ú/g,"u")]=r[k]; }); return o; }
+
+function cKey(c){ return urlOk(c.link).toLowerCase() + "|" + String(c.codigo||"").toLowerCase() + "|" + String(c.descuento||"").toLowerCase(); }
+function norm(r){
+  var o = {};
+  Object.keys(r).forEach(function(k){ o[k.trim().toLowerCase().replace(/á/g,"a").replace(/é/g,"e").replace(/í/g,"i").replace(/ó/g,"o").replace(/ú/g,"u")] = r[k]; });
+  return o;
+}
+
 $('migrateBtn').onclick = function(){
-  adminMsg("⏳ Buscando datos anteriores...","info");
-  Promise.all([db.collection("cupones").get(),db.collection("ofertas").get()]).then(function(res){
-    var conv=function(x){ var o=Object.assign({_id:x.id},x.data()); delete o.likes; delete o.dislikes; return o; };
-    var c=res[0].docs.map(conv), o=res[1].docs.map(conv);
-    if(!c.length&&!o.length) return adminMsg("⚠️ No había datos en la base anterior. Usa el botón Importar de Sheet.","err");
-    rawC=c; rawO=o; return saveAll("🎉 Migrados "+c.length+" cupones y "+o.length+" ofertas");
-  }).catch(function(e){ adminMsg("❌ Error al migrar: "+e.message,"err"); });
+  msg("⏳ Buscando datos anteriores...", false);
+  Promise.all([db.collection("cupones").get(), db.collection("ofertas").get()]).then(function(res){
+    var fn = function(x){ var o = Object.assign({ _id: x.id }, x.data()); delete o.likes; delete o.dislikes; return o; };
+    rawC = res[0].docs.map(fn); rawO = res[1].docs.map(fn);
+    if(!rawC.length && !rawO.length) return msg("⚠️ No había datos anteriores. Usa Importar de Sheet.", true);
+    save("Migrados " + rawC.length + " cupones y " + rawO.length + " ofertas");
+  }).catch(function(e){ msg("❌ Error: " + e.message, true); });
 };
+
 $('importSheetBtn').onclick = function(){
-  adminMsg("⏳ Leyendo Google Sheets...","info");
-  Promise.all([fetch(SHEET+"0&t="+Date.now()).then(function(r){return r.text();}),fetch(SHEET+"527305852&t="+Date.now()).then(function(r){return r.text();}).catch(function(){return "";})]).then(function(res){
-    var c=Papa.parse(res[0],{header:true,skipEmptyLines:true}).data.map(normRow).filter(function(r){return ensureUrl(r.link);});
-    var o=res[1]?Papa.parse(res[1],{header:true,skipEmptyLines:true}).data.map(normRow).filter(function(r){return r.titulo&&ensureUrl(r.link);}):[];
-    var kc=new Set(rawC.map(cKey)), ko=new Set(rawO.map(oKey)), addC=0, addO=0;
-    c.forEach(function(r){ var it={_id:uid(),tienda:r.tienda||"Mercado Libre",descuento:r.descuento||"",descripcion:r.descripcion||"",codigo:String(r.codigo||"").trim().toUpperCase(),link:ensureUrl(r.link),activo:String(r.activo||"si").trim().toLowerCase(),vence:r.vence||"",color:r.color||"",orden:rawC.length+1,verificado:Date.now()}; if(!kc.has(cKey(it))){kc.add(cKey(it));rawC.push(it);addC++;} });
-    o.forEach(function(r){ var it={_id:uid(),titulo:r.titulo,imagen:r.imagen||"",precio:r.precio||"",precio_antes:r.precio_antes||r["precio antes"]||"",descripcion:r.descripcion||"",instrucciones:r.instrucciones||"",vendedor:r.vendedor||"",link:ensureUrl(r.link),activo:String(r.activo||"si").trim().toLowerCase()}; if(!ko.has(oKey(it))){ko.add(oKey(it));rawO.push(it);addO++;} });
-    return saveAll("✅ Importados "+addC+" cupones y "+addO+" ofertas desde Google Sheets");
-  }).catch(function(e){ adminMsg("❌ Error al importar: "+e.message,"err"); });
+  msg("⏳ Leyendo Google Sheets...", false);
+  Promise.all([
+    fetch(SHEET + "0&t=" + Date.now()).then(function(r){ return r.text(); }),
+    fetch(SHEET + "527305852&t=" + Date.now()).then(function(r){ return r.text(); }).catch(function(){ return ""; })
+  ]).then(function(res){
+    var c = Papa.parse(res[0], { header: true, skipEmptyLines: true }).data.map(norm);
+    var o = res[1] ? Papa.parse(res[1], { header: true, skipEmptyLines: true }).data.map(norm) : [];
+    var kc = new Set(rawC.map(cKey)), added = 0;
+    c.forEach(function(r){
+      if(!urlOk(r.link)) return;
+      var it = { _id: uid(), tienda: r.tienda || "Mercado Libre", descuento: r.descuento || "", descripcion: r.descripcion || "", codigo: String(r.codigo||"").trim().toUpperCase(), link: urlOk(r.link), activo: String(r.activo||"si").trim().toLowerCase(), vence: r.vence || "", color: r.color || "", orden: rawC.length + 1, verificado: Date.now() };
+      if(!kc.has(cKey(it))){ kc.add(cKey(it)); rawC.push(it); added++; }
+    });
+    o.forEach(function(r){
+      if(!r.titulo || !urlOk(r.link)) return;
+      rawO.push({ _id: uid(), titulo: r.titulo, imagen: r.imagen || "", precio: r.precio || "", precio_antes: r.precio_antes || r["precio antes"] || "", descripcion: r.descripcion || "", instrucciones: r.instrucciones || "", vendedor: r.vendedor || "", link: urlOk(r.link), activo: String(r.activo||"si").trim().toLowerCase() });
+    });
+    save("Importados " + added + " cupones desde Google Sheets");
+  }).catch(function(e){ msg("❌ Error al importar: " + e.message, true); });
 };
+
 $('dedupeBtn').onclick = function(){
-  var s1=new Set(), s2=new Set();
-  rawC=rawC.filter(function(x){ var k=cKey(x); if(s1.has(k)) return false; s1.add(k); return true; });
-  rawO=rawO.filter(function(x){ var k=oKey(x); if(s2.has(k)) return false; s2.add(k); return true; });
-  saveAll("🧹 Repetidos eliminados");
+  var s = new Set();
+  rawC = rawC.filter(function(x){ var k = cKey(x); if(s.has(k)) return false; s.add(k); return true; });
+  save("Repetidos eliminados");
 };
+
+msg("🟢 Panel v6 completo (3/3 bloques activos). Listo para usar.", false);
 </script>
 </body>
 </html>
